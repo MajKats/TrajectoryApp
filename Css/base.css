@@ -1,58 +1,206 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0f0f14;
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  background: #0B0D12;
+  color: #EDEDED;
   overflow-x: hidden;
 }
 
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 4rem;
+  align-items: center;
+  padding: 1.5rem 6rem;
   position: fixed;
   width: 100%;
-  backdrop-filter: blur(10px);
+  z-index: 100;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
 }
 
-.logo {
-  font-weight: 600;
-  letter-spacing: 1px;
+.navbar.scrolled {
+  padding: 1rem 6rem;
+  background: rgba(11,13,18,0.6);
 }
 
-nav a {
-  margin-right: 1.5rem;
-  color: white;
-  text-decoration: none;
-  opacity: 0.7;
-}
-
+/* HERO */
 .hero {
   height: 100vh;
   display: flex;
   align-items: center;
-  padding: 0 4rem;
+  justify-content: center;
+  padding: 0 2rem;
   position: relative;
+  text-align: center;
+}
+
+.hero-inner {
+  max-width: 850px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  opacity: 0.6;
 }
 
 .hero h1 {
-  font-size: 4rem;
+  font-size: 4.5rem;
+  font-weight: 600;
   line-height: 1.1;
+  margin: 1rem 0;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #7f5af0, #00c6ff);
+  background: linear-gradient(90deg, #7F5AF0, #2CB67D);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.hero-glow {
+.subtext {
+  font-size: 1.2rem;
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+/* BUTTONS */
+.primary-btn {
+  background: linear-gradient(90deg, #7F5AF0, #2CB67D);
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(127,90,240,0.3);
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  margin-left: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.secondary-btn:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Subtle grid background */
+.hero-grid {
   position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(127,90,240,0.4), transparent);
-  top: 20%;
-  right: 10%;
-  filter: blur(120px);
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
   z-index: -1;
+}
+
+/* PRODUCT SECTION */
+.product-preview {
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.product-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-mock {
+  width: 1100px;
+  height: 650px;
+  background: #11131A;
+  border-radius: 20px;
+  display: flex;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  transform: perspective(1200px) rotateX(4deg);
+  transition: transform 0.5s ease;
+}
+
+.dashboard-mock:hover {
+  transform: perspective(1200px) rotateX(0deg) scale(1.02);
+}
+
+.sidebar {
+  width: 80px;
+  background: #0E1016;
+  border-radius: 20px 0 0 20px;
+  padding: 1rem;
+}
+
+.nav-item {
+  height: 40px;
+  margin: 1rem 0;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+}
+
+.nav-item.active {
+  background: linear-gradient(90deg, #7F5AF0, #2CB67D);
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.topbar {
+  height: 50px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2rem;
+}
+
+.card {
+  background: #151822;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.card.large {
+  grid-column: span 2;
+}
+
+.bar {
+  height: 12px;
+  background: rgba(255,255,255,0.1);
+  margin: 0.8rem 0;
+  border-radius: 6px;
+}
+
+.bar.short {
+  width: 60%;
+}
+
+.circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #7F5AF0, #2CB67D);
+  margin-top: 1rem;
 }
