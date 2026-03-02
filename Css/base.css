@@ -505,3 +505,63 @@ body {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
+
+/* ABOUT PAGE*/
+
+.about-core {
+  padding: 8rem 2rem;
+}
+
+.about-block {
+  margin-bottom: 6rem;
+  max-width: 800px;
+}
+
+.about-block h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-block p {
+  opacity: 0.8;
+  line-height: 1.8;
+}
+
+.founder {
+  border-left: 2px solid rgba(127,90,240,0.5);
+  padding-left: 2rem;
+}
+
+/* CONTACT PAGE */
+
+.contact-section {
+  padding: 6rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.contact-card {
+  background: #151822;
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+}
+
+@media (max-width: 900px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LOGO */
+
+.logo-img {
+  height: 28px;
+}
+
