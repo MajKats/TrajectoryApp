@@ -20,8 +20,8 @@ body {
 }
 
 .navbar.scrolled {
-  padding: 1rem 6rem;
   background: rgba(11,13,18,0.6);
+  backdrop-filter: blur(16px);
 }
 
 /* HERO */
@@ -401,4 +401,66 @@ body {
   height: 2px;
   width: 100%;
   background: linear-gradient(90deg, #7F5AF0, #2CB67D);
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(127,90,240,0.4), transparent);
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 2px;
+  width: 25px;
+  background: white;
+  margin: 4px 0;
+}
+
+/* MOBILE NAV */
+@media (max-width: 900px) {
+  .navbar nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: #0B0D12;
+    flex-direction: column;
+    padding: 6rem 2rem;
+    transition: right 0.3s ease;
+  }
+
+  .navbar nav.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* SCROLL REVEAL ANIMATIONS */
+
+.problem-card,
+.audience-block,
+.feature-row {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }

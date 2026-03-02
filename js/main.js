@@ -37,6 +37,19 @@ window.addEventListener("mousemove", (e) => {
   `;
 });
 
+// Glass Scroll Effect
+function initNavbarScroll() {
+  const nav = document.querySelector(".navbar");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      nav.classList.add("scrolled");
+    } else {
+      nav.classList.remove("scrolled");
+    }
+  });
+}
+
 // Inject shared navbar
 function loadComponent(id, file) {
   fetch(file)
@@ -65,3 +78,28 @@ function setActiveNav() {
     }
   });
 }
+
+// Mobile Menu
+function initMobileMenu() {
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+
+  if (!hamburger) return;
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+}
+
+// Scroll Reveal Animations
+const revealElements = document.querySelectorAll(".problem-card, .audience-block, .feature-row");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("revealed");
+    }
+  });
+}, { threshold: 0.1 });
+
+revealElements.forEach(el => observer.observe(el));
