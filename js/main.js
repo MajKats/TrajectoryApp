@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setActiveNav();
     initMobileMenu();
     initNavbarScroll();
+    initLaunchModal();
   });
 
   loadComponent("footer-placeholder", "components/footer.html");
@@ -48,11 +49,24 @@ function setActiveNav() {
 function initMobileMenu() {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
+  const overlay = document.getElementById("nav-overlay");
 
   if (!hamburger || !navMenu) return;
 
+  function closeMenu() {
+    navMenu.classList.remove("active");
+    overlay.classList.remove("active");
+  }
+
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
+    overlay.classList.toggle("active");
+  });
+
+  overlay.addEventListener("click", closeMenu);
+
+  navMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
   });
 }
 
@@ -91,4 +105,34 @@ function initScrollReveal() {
   }, { threshold: 0.1 });
 
   revealElements.forEach(el => observer.observe(el));
+}
+
+/* ---------------- LAUNCH MODAL ---------------- */
+
+function initLaunchModal() {
+  const launchBtn = document.getElementById("launch-btn");
+  const overlay = document.getElementById("launch-overlay");
+  const closeBtn = document.getElementById("modal-close");
+
+  if (!launchBtn || !overlay) return;
+
+  launchBtn.addEventListener("click", () => {
+    overlay.classList.add("active");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.classList.remove("active");
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove("active");
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      overlay.classList.remove("active");
+    }
+  });
 }
