@@ -1,57 +1,5 @@
-// Simple waitlist handler (temporary)
-document.getElementById("waitlist-form")
-  .addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("You're on the list.");
-  });
-
-  // Navbar shrink on scroll
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector(".navbar");
-  if (window.scrollY > 50) {
-    nav.classList.add("scrolled");
-  } else {
-    nav.classList.remove("scrolled");
-  }
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll("a[href^='#']").forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute("href"))
-      .scrollIntoView({ behavior: "smooth" });
-  });
-});
-
-// Dashboard subtle float animation
-const dashboard = document.querySelector(".dashboard-mock");
-
-window.addEventListener("mousemove", (e) => {
-  const x = (window.innerWidth / 2 - e.clientX) / 40;
-  const y = (window.innerHeight / 2 - e.clientY) / 40;
-  dashboard.style.transform = `
-    perspective(1200px)
-    rotateY(${x}deg)
-    rotateX(${y}deg)
-  `;
-});
-
-// Glass Scroll Effect
-function initNavbarScroll() {
-  const nav = document.querySelector(".navbar");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      nav.classList.add("scrolled");
-    } else {
-      nav.classList.remove("scrolled");
-    }
-  });
-}
-
-// Load components
 document.addEventListener("DOMContentLoaded", () => {
+
   loadComponent("navbar-placeholder", "components/navbar.html", () => {
     setActiveNav();
     initMobileMenu();
@@ -59,7 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   loadComponent("footer-placeholder", "components/footer.html");
+
+  initScrollReveal();
+
 });
+
+
+/* ---------------- COMPONENT LOADER ---------------- */
 
 function loadComponent(id, file, callback) {
   const placeholder = document.getElementById(id);
@@ -74,27 +28,67 @@ function loadComponent(id, file, callback) {
     .catch(err => console.error("Component load error:", err));
 }
 
-// Mobile Menu
+
+/* ---------------- ACTIVE NAV LINK ---------------- */
+
+function setActiveNav() {
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".navbar nav a");
+
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active-link");
+    }
+  });
+}
+
+
+/* ---------------- MOBILE MENU ---------------- */
+
 function initMobileMenu() {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
 
-  if (!hamburger) return;
+  if (!hamburger || !navMenu) return;
 
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
   });
 }
 
-// Scroll Reveal Animations
-const revealElements = document.querySelectorAll(".problem-card, .audience-block, .feature-row");
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("revealed");
+/* ---------------- NAVBAR SCROLL EFFECT ---------------- */
+
+function initNavbarScroll() {
+  const nav = document.querySelector(".navbar");
+  if (!nav) return;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      nav.classList.add("scrolled");
+    } else {
+      nav.classList.remove("scrolled");
     }
   });
-}, { threshold: 0.1 });
+}
 
-revealElements.forEach(el => observer.observe(el));
+
+/* ---------------- SCROLL REVEAL ---------------- */
+
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll(
+    ".problem-card, .audience-block, .feature-row"
+  );
+
+  if (!revealElements.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealElements.forEach(el => observer.observe(el));
+}

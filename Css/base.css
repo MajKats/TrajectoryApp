@@ -411,6 +411,11 @@ body {
   color: white;
 }
 
+.navbar.scrolled {
+  background: rgba(11,13,18,0.6);
+  backdrop-filter: blur(16px);
+}
+
 /* HAMBURGER */
 .hamburger {
   display: none;
