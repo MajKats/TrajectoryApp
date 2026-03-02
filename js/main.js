@@ -50,33 +50,28 @@ function initNavbarScroll() {
   });
 }
 
-// Inject shared navbar
-function loadComponent(id, file) {
+// Load components
+document.addEventListener("DOMContentLoaded", () => {
+  loadComponent("navbar-placeholder", "components/navbar.html", () => {
+    setActiveNav();
+    initMobileMenu();
+    initNavbarScroll();
+  });
+
+  loadComponent("footer-placeholder", "components/footer.html");
+});
+
+function loadComponent(id, file, callback) {
+  const placeholder = document.getElementById(id);
+  if (!placeholder) return;
+
   fetch(file)
     .then(res => res.text())
     .then(data => {
-      document.getElementById(id).innerHTML = data;
-      if (id === "navbar-placeholder") {
-        setActiveNav();
-        initMobileMenu();
-        initNavbarScroll();
-      }
-    });
-}
-
-// Load components
-loadComponent("navbar-placeholder", "/components/navbar.html");
-loadComponent("footer-placeholder", "/components/footer.html");
-
-function setActiveNav() {
-  const currentPage = window.location.pathname.split("/").pop();
-  const navLinks = document.querySelectorAll(".navbar nav a");
-
-  navLinks.forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active-link");
-    }
-  });
+      placeholder.innerHTML = data;
+      if (callback) callback();
+    })
+    .catch(err => console.error("Component load error:", err));
 }
 
 // Mobile Menu
