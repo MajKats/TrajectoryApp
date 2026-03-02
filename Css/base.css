@@ -386,18 +386,29 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.5rem 4rem;
+  padding: 1.2rem 2rem;   /* smaller horizontal padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  transition: all 0.3s ease;
+  box-sizing: border-box; /* critical */
 }
 
 .navbar nav {
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+.launch-btn {
+  background: linear-gradient(90deg, #7F5AF0, #2CB67D);
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;  /* prevents weird wrapping */
 }
 
 /* LINKS */
@@ -438,6 +449,7 @@ body {
   }
 
   .navbar nav {
+    display: flex;
     position: fixed;
     top: 0;
     right: -100%;
@@ -472,6 +484,10 @@ body {
 
   .audience-inner {
     grid-template-columns: 1fr;
+  }
+
+  .launch-btn {
+    width: 100%;
   }
 }
 
