@@ -23,3 +23,16 @@ document.querySelectorAll("a[href^='#']").forEach(anchor => {
       .scrollIntoView({ behavior: "smooth" });
   });
 });
+
+// Dashboard subtle float animation
+const dashboard = document.querySelector(".dashboard-mock");
+
+window.addEventListener("mousemove", (e) => {
+  const x = (window.innerWidth / 2 - e.clientX) / 40;
+  const y = (window.innerHeight / 2 - e.clientY) / 40;
+  dashboard.style.transform = `
+    perspective(1200px)
+    rotateY(${x}deg)
+    rotateX(${y}deg)
+  `;
+});
