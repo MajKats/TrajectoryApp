@@ -1,3 +1,7 @@
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
@@ -375,42 +379,36 @@ body {
   box-shadow: 0 30px 60px rgba(0,0,0,0.4);
 }
 
-/* NAVBAR*/
+/* NAVBAR BASE */
 
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* LINKS */
 .navbar a {
   text-decoration: none;
-  color: rgba(255,255,255,0.6);
-  margin-right: 2rem;
+  color: rgba(255,255,255,0.7);
   transition: 0.3s ease;
 }
 
 .navbar a:hover {
   color: white;
-}
-
-.active-link {
-  color: white !important;
-  position: relative;
-}
-
-.active-link::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(90deg, #7F5AF0, #2CB67D);
-}
-
-.navbar::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 10%;
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(127,90,240,0.4), transparent);
 }
 
 /* HAMBURGER */
@@ -427,17 +425,23 @@ body {
   margin: 4px 0;
 }
 
-/* MOBILE NAV */
+/* MOBILE */
 @media (max-width: 900px) {
+
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
   .navbar nav {
     position: fixed;
     top: 0;
     right: -100%;
     height: 100vh;
-    width: 250px;
+    width: 260px;
     background: #0B0D12;
     flex-direction: column;
     padding: 6rem 2rem;
+    gap: 1.5rem;
     transition: right 0.3s ease;
   }
 
@@ -447,6 +451,22 @@ body {
 
   .hamburger {
     display: flex;
+  }
+
+  .feature-row {
+    grid-template-columns: 1fr;
+  }
+
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vision-split {
+    grid-template-columns: 1fr;
+  }
+
+  .audience-inner {
+    grid-template-columns: 1fr;
   }
 }
 
