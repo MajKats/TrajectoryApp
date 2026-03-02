@@ -36,3 +36,22 @@ window.addEventListener("mousemove", (e) => {
     rotateX(${y}deg)
   `;
 });
+
+// Inject shared navbar
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar-placeholder").innerHTML = data;
+    setActiveNav();
+  });
+
+function setActiveNav() {
+  const currentPage = window.location.pathname.split("/").pop();
+  const navLinks = document.querySelectorAll(".navbar nav a");
+
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active-link");
+    }
+  });
+}

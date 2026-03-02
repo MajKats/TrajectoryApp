@@ -336,3 +336,69 @@ body {
   text-decoration: none;
   color: rgba(255,255,255,0.5);
 }
+
+/* PRODUCT PAGE */
+
+.page-hero {
+  padding: 12rem 2rem 6rem;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: 3.5rem;
+}
+
+.feature-deep {
+  padding: 6rem 2rem;
+}
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.feature-row.reverse {
+  direction: rtl;
+}
+
+.feature-row.reverse .feature-text {
+  direction: ltr;
+}
+
+.feature-mock {
+  height: 400px;
+  background: #151822;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+/* NAVBAR*/
+
+.navbar a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.6);
+  margin-right: 2rem;
+  transition: 0.3s ease;
+}
+
+.navbar a:hover {
+  color: white;
+}
+
+.active-link {
+  color: white !important;
+  position: relative;
+}
+
+.active-link::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #7F5AF0, #2CB67D);
+}
