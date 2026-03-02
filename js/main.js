@@ -38,12 +38,22 @@ window.addEventListener("mousemove", (e) => {
 });
 
 // Inject shared navbar
-fetch("components/navbar.html")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("navbar-placeholder").innerHTML = data;
-    setActiveNav();
-  });
+function loadComponent(id, file) {
+  fetch(file)
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById(id).innerHTML = data;
+      if (id === "navbar-placeholder") {
+        setActiveNav();
+        initMobileMenu();
+        initNavbarScroll();
+      }
+    });
+}
+
+// Load components
+loadComponent("navbar-placeholder", "/components/navbar.html");
+loadComponent("footer-placeholder", "/components/footer.html");
 
 function setActiveNav() {
   const currentPage = window.location.pathname.split("/").pop();
